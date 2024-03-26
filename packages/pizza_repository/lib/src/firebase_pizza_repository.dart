@@ -1,7 +1,13 @@
-import 'dart:math';
+// import 'dart:math';
+
+import 'dart:developer';
+import 'dart:html' as html;
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pizza_repository/pizza_repository.dart';
 import 'package:pizza_repository/src/models/form_model.dart';
 
@@ -109,7 +115,7 @@ class FirebasePizzaRepo implements PizzaRepo {
                 .toDoument(),
           );
     } catch (e) {
-      log(e.hashCode);
+      log(e.toString());
       rethrow;
     }
   }
@@ -122,5 +128,18 @@ class FirebasePizzaRepo implements PizzaRepo {
   @override
   Future<void> updateItemCount(String field, pizzaId, var newFieldValue) async {
     await pizzaCartCollection.doc(pizzaId).update({field: newFieldValue});
+  }
+
+  @override
+  Future<String> sendImage(Uint8List file) async {
+    try {
+      Reference firebaseStorageRef =
+          FirebaseStorage.instance.ref().child('test.png');
+      await firebaseStorageRef.putBlob(file);
+      return await firebaseStorageRef.getDownloadURL();
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
   }
 }

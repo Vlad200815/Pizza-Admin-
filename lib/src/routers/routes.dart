@@ -5,10 +5,12 @@ import 'package:pizza_admin_app/src/blocs/authentication_bloc/authentication_blo
 
 import 'package:pizza_admin_app/src/modules/auth/views/login_screen.dart';
 import 'package:pizza_admin_app/src/modules/base/views/base_screen.dart';
+import 'package:pizza_admin_app/src/modules/create_pizza/blocs/bloc/upload_picture_bloc.dart';
 import 'package:pizza_admin_app/src/modules/create_pizza/views/create_pizza_screen.dart';
 import 'package:pizza_admin_app/src/modules/home/views/home_screen.dart';
 import 'package:pizza_admin_app/src/modules/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:pizza_admin_app/src/modules/splash/views/splash_screen.dart';
+import 'package:pizza_repository/pizza_repository.dart';
 
 final _navKey = GlobalKey<NavigatorState>();
 final _shellNavigationKey = GlobalKey<NavigatorState>();
@@ -75,8 +77,8 @@ GoRouter router(AuthenticationBloc authBloc) {
           ),
           GoRoute(
             path: "/create",
-            builder: (context, state) => BlocProvider<AuthenticationBloc>.value(
-              value: BlocProvider.of<AuthenticationBloc>(context),
+            builder: (context, state) => BlocProvider(
+              create: (context) => UploadPictureBloc(FirebasePizzaRepo()),
               child: const CreatePizzaScreen(),
             ),
           ),

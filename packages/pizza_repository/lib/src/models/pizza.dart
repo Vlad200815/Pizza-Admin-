@@ -69,4 +69,19 @@ class Pizza {
       itemCount: entity.itemCount,
     );
   }
+
+  @override
+  String toString() {
+    return '''
+    pizzaId: $pizzaId, 
+    picture: $picture, 
+    isVeg: $isVeg, 
+    spicy: $spicy, 
+    name: $name, 
+    description: $description, 
+    price: $price, 
+    discount: $discount, 
+    macros: $macros,
+    ''';
+  }
 }

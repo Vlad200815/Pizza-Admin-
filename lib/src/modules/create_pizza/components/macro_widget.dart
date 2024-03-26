@@ -44,7 +44,7 @@ class MyMacroWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     SizedBox(
-                      width: 50,
+                      width: 80,
                       child: TextField(
                         controller: controller,
                         textAlign: TextAlign.center,

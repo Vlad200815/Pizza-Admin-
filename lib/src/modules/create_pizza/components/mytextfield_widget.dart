@@ -10,9 +10,11 @@ class CreateTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String hint;
   final Widget? suffixIcon;
+  final double? width;
 
   const CreateTextField({
     this.suffixIcon,
+    this.width,
     super.key,
     required this.hint,
     required this.controller,
@@ -26,23 +28,20 @@ class CreateTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-      child: Container(
-        height: 35,
-        child: TextField(
-          keyboardType: keyboardType,
-          controller: controller,
-          decoration: InputDecoration(
-            suffixIcon: suffixIcon,
-            fillColor: Colors.white,
-            hintText: hint,
-            hintStyle: const TextStyle(fontSize: 12),
-            border: OutlineInputBorder(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5),
-              ),
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.background,
-              ),
+      child: TextField(
+        keyboardType: keyboardType,
+        controller: controller,
+        decoration: InputDecoration(
+          suffixIcon: suffixIcon,
+          fillColor: Colors.white,
+          hintText: hint,
+          hintStyle: const TextStyle(fontSize: 12),
+          border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(5),
+            ),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.background,
             ),
           ),
         ),
